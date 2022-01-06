@@ -1,0 +1,396 @@
+
+    1  ls
+    2  sudo apt-get update
+    3  sudo apt-get install nodejs
+    4  sudo apt install npm
+    5  npm install webpack@3.0.0
+    6  npm install webpack-cli@3.0.8
+    7  npm install ganache-cli
+    8  npm install node-gyp@3.6.2
+    9  npm install truffle@5.1.39
+   10  npm install web3@1.0.0-beta.37
+   11  npm install create-react-app
+   12  curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+   13  sudo bash nodesource_setup.sh
+   14  sudo apt install nodejs
+   15  ./node_modules/.bin/create-react-app  packt
+   16  cd packt/
+   17  ls
+   18  npm install
+   19  ./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h  ec2-34-210-86-23.us-west-2.compute.amazonaws.com
+   20  cd ..
+   21  ./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h  ec2-34-220-213-73.us-west-2.compute.amazonaws.com
+   22  history
+
+
+
+
+ 1  ls
+    2  cd packt/
+    3  ls
+    4  npm start
+    5  npm install
+    6  cd src
+    7  npm start
+    8  npm install definitions
+    9  npm start
+   10  history
+
+
+
+ ./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h ec2-34-220-144-108.us-west-2.compute.amazonaws.com
+
+
+./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h  ec2-34-220-144-108.us-west-2.compute.amazonaws.com
+
+
+
+./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h ec2-54-244-178-200.us-west-2.compute.amazonaws.com
+
+
+update the truffle-config.js
+
+do the truffle build
+
+./node_modules/.bin/truffle deploy
+./node_modules/.bin/truffle test
+
+
+Compiling your contracts...
+===========================
+> Compiling ./test/TestGaming.sol
+> Artifacts written to /tmp/test--1148-Gs2RMVue63g2
+> Compiled successfully using:
+   - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
+
+
+
+  TestGaming
+    ✓ testPlayerWonGuessHigher (80ms)
+    ✓ testPlayerWonGuessLower (79ms)
+    ✓ testPlayerLostGuessLower (68ms)
+    ✓ testPlayerLostGuessHigher (69ms)
+
+  Contract: Gaming
+    ✓ Should record player losses (74ms)
+    ✓ Should record player wins (59ms)
+
+
+  6 passing (9s)
+
+
+
+
+
+copy over Gaming.json from
+build/contracts
+
+to 'contracts'
+
+so now I can do a node 'script' test of the blockchain app
+
+var config  = require('./Gaming.json');
+config.abi 
+
+
+
+
+don't forget the connect via metamask....
+
+
+
+./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h  ec2-34-219-201-217.us-west-2.compute.amazonaws.com
+
+
+./node_modules/.bin/ganache-cli --port 8545  --chainId 5777  -h  ec2-35-88-62-29.us-west-2.compute.amazonaws.com
+
+
+
+
+
+
+
+
+
+
+account 0xF308be0017DA7c0F1b5EE96EBa622A26f15c43A4
+errors.js:33 Uncaught (in promise) Error: Invalid number of parameters for "fundGame". Got 1 expected 0!
+    at Object.InvalidNumberOfParams (errors.js:33)
+    at Object._createTxObject (index.js:682)
+    at App.loadBlockchainData (App.js:67)
+
+
+
+
+    
+    function getWins( address ) publc view returns ( uint ) { 
+	return wins;
+    }
+
+
+I have to write set/getters to read in the contract variables to access them.
+
+App.js:80 Uncaught (in promise) TypeError: contract.players is not a function
+    at App.loadBlockchainData (App.js:80)
+
+
+
+
+(0) 0xb00abf1873bb35943c9aa89a459664f4b94f53b0f2e2e399b74b2dfbce2887c6
+
+
+
+(0) 0xe144723a40f1f23399cea0e7ce12e3f4eb8dbfaf5640920f2643adf18c1636cb
+
+
+
+troubleshoot - remember to always update the contract id from a newly deployed contract.!
+
+
+
+
+0x46b2a772b0bf05786aa0504ea25123d309654b5314a53f367b9a3605a09afc8d
+
+
+
+==================
+addresss===>>>(0) 0x46b2a772b0bf05786aa0504ea25123d309654b5314a53f367b9a3605a09afc8d
+
+
+0x46b2a772b0bf05786aa0504ea25123d309654b5314a53f367b9a3605a09afc8d
+
+
+(0) 0x3f585982f2c03cce3fdb330f86dd74c8bee6a90321bd2348fdfbc70133b6319d
+
+
+
+Uncaught (in promise) TypeError: contract.methods.winOrLose4 is not a function
+    at App.loadBlockchainData (App.js:80)
+
+I need to copy in the abi into a place that allows it to be read by App.js
+
+https://stackoverflow.com/questions/48547268/smart-contract-method-is-not-a-function-in-web3
+
+
+For anyone else struggling, try to check whether your ABI json actually includes the method you are
+ trying to call. It could have been that you copied the ABI for the wrong contract as Remix would by
+ default list the first contract in the default template rather than your newly created contract.
+
+
+1.) make change to code
+2.) migrate , deploy , test contracts
+3.) copy over new Gaming.json
+4.) obtain the new contract address and place in App.js
+
+
+
+
+
+
+./node_modules/.bin/truffle
+   12* ./node_modules/.bin/truffle
+   13  ./node_modules/.bin/truffle deploy
+   14  ./node_modules/.bin/truffle test
+
+https://stackoverflow.com/questions/7210011/amazon-ec2-ssh-timeout-due-inactivity
+
+
+pwd 
+/howe/ubuntu
+ubuntu@ip-172-31-23-175:~$ vi .ssh/config
+
+ubuntu@ip-172-31-23-175:~$ chmod 664   .ssh/config
+
+
+
+
+
+
+(0) 0x63fb74105994a2cd672de28b70a10f7bbc62434760d2541d2ab31d9c27213a78
+(1) 0xe2f2115bf37bcf32b57199b9fb2d9c5249078b24c4af7ffa1fc58d1fd779c12c
+(2) 0xa9cc745437f5d6d60d928b19ba3698beb02976df4430ed1224ab72045598fb4e
+(3) 0xc6c94d3839dfa0dd0c670a54e21800e0f622a51cc0c74e0a728435d8f63f774b
+(4) 0xc7b49be5f4bac33f5c287974a3791ef5dcf4dd88d0d83695aea86447161d3a5c
+(5) 0x7ee0a017020194d3ca679c2f8c2dc3cf9459e333e5a370ad79b6f33d6ccc8834
+
+
+
+
+0x18030e3f3f1152636a4Be787871abf58c325e154"
+
+
+Uncaught (in promise) Error: Returned values aren't valid, did it run Out of Gas? You might also see this error if you are not using the correct ABI for the contract you are retrieving data from, requesting data from a block number that does not exist, or querying a node which is not fully synced.
+    at ABICoder.decodeParametersWith (index.js:297)
+    at ABICoder.decodeParameters (index.js:284)
+    at Contract._decodeMethodReturn (index.js:481)
+    at Method.outputFormatter (index.js:788)
+    at Method.formatOutput (index.js:147)
+    at sendTxCallback (index.js:530)
+    at index.js:307
+    at XMLHttpRequest.request.onreadystatechange 
+
+
+
+I needed to update the ABI
+
+
+
+
+formatters.js:414 Uncaught (in promise) Error: Provided address 0x7ee0a017020194d3ca679c2f8c2dc3cf9459e333e5a370ad79b6f33d6ccc8834 is invalid, the capitalization checksum test failed, or it's an indirect IBAN address which can't be converted.
+    at Object.inputAddressFormatter (formatters.js:414)
+    at Contract.getOrSetDefaultOptions [as _getOrSetDefaultOptions] (index.js:315)
+    at Object._processExecuteArguments (index.js:712)
+    at Object._executeMethod (index.js:732)
+    at App.loadBlockchainData (App.js:88)
+
+
+
+
+
+(0) 0x59a08873c2824bf4314c0a8171d2ecd4b85cfec0a1f49ad3be5c8391d6405585
+(1) 0x2ac9677eea233e812341c8683fb978a06fac1d13e3728ee3f61fea6aa1ab7b38
+(2) 0x11def594e1440a83534ea928ab963eb256f826b6b442ce713a8071195bd01c9d
+(3) 0x9ae2314379b3826b9cb40c018939403d65c67b461e8a229cd840175827c9f351
+(4) 0x470ce5897977b494b8106041b56e3bbe493a69251216a015958c96aecba030e3
+(5) 0xb8798f294cd726e9b9ecc882219bdb8cd2e93bd52dacb00db50e9a219706db64
+(6) 0x620f26a9913ed013b1f848f00000cbb2c7604cc6c5e8c028315fa03ae55cb06f
+(7) 0x288f53e024a4ac4b6a35e0b44286a89ab553f77c5ede3e5c7cc58c9abcc2d073
+(8) 0x816f26a2d7344d47f474f8e8380a602e8d10ebd2e6cf5925765dac08ee571542
+(9) 0x70ab3397e5f629d271f05052d9dbe7cdec9da8ccd3c210796e0a7ce06b6ab155
+
+
+formatters.js:414 Uncaught (in promise) Error: Provided address 0x7ee0a017020194d3ca679c2f8c2dc3cf9459e333e5a370ad79b6f33d6ccc8834 is invalid, the capitalization checksum test failed, or it's an indirect IBAN address which can't be converted.
+    at Object.inputAddressFormatter (formatters.js:414)
+    at Contract.getOrSetDefaultOptions [as _getOrSetDefaultOptions] (index.js:315)
+    at Object._processExecuteArguments (index.js:712)
+    at Object._executeMethod (index.js:732)
+    at App.loadBlockchainData
+
+
+(0) 0x59a08873c2824bf4314c0a8171d2ecd4b85cfec0a1f49ad3be5c8391d6405585
+(1) 0x2ac9677eea233e812341c8683fb978a06fac1d13e3728ee3f61fea6aa1ab7b38
+(2) 0x11def594e1440a83534ea928ab963eb256f826b6b442ce713a8071195bd01c9d
+(3) 0x9ae2314379b3826b9cb40c018939403d65c67b461e8a229cd840175827c9f351
+(4) 0x470ce5897977b494b8106041b56e3bbe493a69251216a015958c96aecba030e3
+(5) 0xb8798f294cd726e9b9ecc882219bdb8cd2e93bd52dacb00db50e9a219706db64
+(6) 0x620f26a9913ed013b1f848f00000cbb2c7604cc6c5e8c028315fa03ae55cb06f
+(7) 0x288f53e024a4ac4b6a35e0b44286a89ab553f77c5ede3e5c7cc58c9abcc2d073
+(8) 0x816f26a2d7344d47f474f8e8380a602e8d10ebd2e6cf5925765dac08ee571542
+(9) 0x70ab3397e5f629d271f05052d9dbe7cdec9da8ccd3c210796e0a7ce06b6ab155
+
+
+
+(0) 0x59a08873c2824bf4314c0a8171d2ecd4b85cfec0a1f49ad3be5c8391d6405585
+(1) 0x2ac9677eea233e812341c8683fb978a06fac1d13e3728ee3f61fea6aa1ab7b38
+(2) 0x11def594e1440a83534ea928ab963eb256f826b6b442ce713a8071195bd01c9d
+(3) 0x9ae2314379b3826b9cb40c018939403d65c67b461e8a229cd840175827c9f351
+(4) 0x470ce5897977b494b8106041b56e3bbe493a69251216a015958c96aecba030e3
+(5) 0xb8798f294cd726e9b9ecc882219bdb8cd2e93bd52dacb00db50e9a219706db64
+(6) 0x620f26a9913ed013b1f848f00000cbb2c7604cc6c5e8c028315fa03ae55cb06f
+(7) 0x288f53e024a4ac4b6a35e0b44286a89ab553f77c5ede3e5c7cc58c9abcc2d073
+(8) 0x816f26a2d7344d47f474f8e8380a602e8d10ebd2e6cf5925765dac08ee571542
+(9) 0x70ab3397e5f629d271f05052d9dbe7cdec9da8ccd3c210796e0a7ce06b6ab155
+
+
+
+
+(0) 0xd919674ea518687fdec785e8cc2c6c043fe5d01299f92a4b7e5d99b72390a809
+(1) 0xac7f040e9fa32f1c6cd11f403530419facdbdf285ca1242af7dfce37c5a9f229
+(2) 0xaeff2a69e71d1e65e585e651cc8b3ac30d1941e7bae61da06c028537936e7d6b
+(3) 0x35c028e0d2d408b343d5b9f35ecfda94364edbd950111143e1cd9fa3316d97ae
+(4) 0x96228849736bc106905f69dfbf0fb8c47d75fe46a61e8643c7aef126c0b59def
+(5) 0xd6e952aafd53531eb24368c103a67ab896c5da1114704af9711958c1aba404db
+(6) 0xc463b809de9914fb19a8ffb66304243bf91e3edb7831eb27ee47ab549fa62a72
+(7) 0x4b15110e01ef02bb4773d22c74267c952327a75daf5dff789518a2be859eb1a9
+(8) 0xb2c48eeb6463a3420b7d623a1e927a18eeefc2ae04a6c7654f4e87ded94235ea
+(9) 0xcf1db6d3c900e68164f1edda1e76bf3dac051f5422c69645127f70f3ce6df4d8
+
+
+
+
+0x0Afa9B26194b8f0752b9005D28Da8B55fFED69BE 
+
+
+
+(0) 0x1ced712e06341ceb9c23c8869669b83df0bd1c42efafc530b4f9be9204bd0422
+(1) 0x848b7052deb43af1e35c535ddd2b02d5a157ca1725198bb05fb093178b37e166
+(2) 0xf228b6047ce432b3847315ce31eb58d888c8e911505a0023e3868c746555a763
+(3) 0x1e3f7b280525162d6425cd2bcd7cd39b39756edc89f45b1a26bf6c84e4058239
+(4) 0xbb9368498b40c019ec066d9c3a3853f5be87e7d8b34aa96c19002baeab5a5077
+(5) 0x879e3e27b24f8869bd81f73fb88b4bda6336c02725363cc70710c006adeab1ae
+(6) 0x078e60519600f73e66db51748bbd641c3eed8dde4e029cc18bb74ab4cc83b331
+(7) 0x80f1ad3fb3e10563e0c3d73d4c1c363b5f58c9b5b659bb82e741382d3a2e44c7
+(8) 0x6c665ce0b728ccacba5893008979d398b7b0e5ee50f1872dc7f5b61251fedba5
+(9) 0x1eb6c97ee7913c3dd41d43ebbc14ad7aeb7859fd2e0563e9fdfea1475d852330
+
+
+
+
+(0) 0xee5056e5373b4aa113d1f5c18b5e2e3a222ffca2c22d655494c588e1ff102421
+(1) 0xd2826732aa7d69d2dbd9466c3a30d4f570ac4f5a833a07c748d10a5d1a68edc6
+(2) 0xc79f59bf308bfeb32a76ebf85819b595bb95a6d56e3e539628d5ef1ec6aa47dd
+(3) 0x9afd959429f5997e93fe187fd57b64c70877a61be1aaa891569c8f603ab97c5e
+(4) 0x48c5e9dcba8175a367ecf227fccf329e94ec9dfc037ea1d75d0731406869def6
+(5) 0xad3546f5a007eda6ab448fd00bc7e1e2ab97c9f9eab3cb9875097c889dfe2101
+(6) 0x120d9f95a24bc634f33bee33985bccda91490257ba85bd0edf3883c62a7c3100
+(7) 0xbe74086c4c4fcc48138f08e162ebf62822f13dfb6bb2a9d6ea4f06b31ff94acb
+(8) 0xfa11efb59d114e40a6651ea7acae5e61c3052ec5164f4b629a12815abab29486
+(9) 0x0879469d1c37aa64b1c96566844a1bfe46afe36d472522f7ae1a126c6777b268
+
+0xd2826732aa7d69d2dbd9466c3a30d4f570ac4f5a833a07c748d10a5d1a68edc6
+
+
+
+
+
+(0) 0xee5056e5373b4aa113d1f5c18b5e2e3a222ffca2c22d655494c588e1ff102421
+(1) 0xd2826732aa7d69d2dbd9466c3a30d4f570ac4f5a833a07c748d10a5d1a68edc6
+(2) 0xc79f59bf308bfeb32a76ebf85819b595bb95a6d56e3e539628d5ef1ec6aa47dd
+(3) 0x9afd959429f5997e93fe187fd57b64c70877a61be1aaa891569c8f603ab97c5e
+(4) 0x48c5e9dcba8175a367ecf227fccf329e94ec9dfc037ea1d75d0731406869def6
+(5) 0xad3546f5a007eda6ab448fd00bc7e1e2ab97c9f9eab3cb9875097c889dfe2101
+(6) 0x120d9f95a24bc634f33bee33985bccda91490257ba85bd0edf3883c62a7c3100
+(7) 0xbe74086c4c4fcc48138f08e162ebf62822f13dfb6bb2a9d6ea4f06b31ff94acb
+(8) 0xfa11efb59d114e40a6651ea7acae5e61c3052ec5164f4b629a12815abab29486
+(9) 0x0879469d1c37aa64b1c96566844a1bfe46afe36d472522f7ae1a126c6777b268
+
+0xd2826732aa7d69d2dbd9466c3a30d4f570ac4f5a833a07c748d10a5d1a68edc6
+
+
+
+
+
+
+account 0xc558C1A045ed637931cd94Cbd21053fF54b78C10
+App.js:45 account1 0xec926020A1962832d31D00a5E80DE98567C65155
+App.js:83 just before first call..., passing in a '12' as the player number with bet to be higher.
+App.js:93 {transactionHash: '0xdf1af8a3c8ab29f1846be9c0361acd7ba0ee04c45eaf12bbf993b7febcb637f1', transactionIndex: 0, blockHash: '0x3bd3ccc688206e37111dcefb8c73393664f5f4412ceb8aa8a5b4b79db61c30e1', blockNumber: 5, from: '0xec926020a1962832d31d00a5e80de98567c65155', …}
+index.js:540 null Result {0: true, 1: '1'}
+App.js:98 just after the first call to winOrLose
+index.js:540 null '1'
+App.js:106 {transactionHash: '0x318d94db6b2af0eab35c58ff0e88b0f964edafc13b83945761bf9000ca0cecb1', transactionIndex: 0, blockHash: '0x06780a6e648b20424aca6c3a678341bcb9bc180fa531a01e04303c9af00056e7', blockNumber: 6, from: '0xec926020a1962832d31d00a5e80de98567c65155', …}
+index.js:540 null Result {0: false, 1: '2'}
+index.js:540 null '1'
+App.js:113 {transactionHash: '0x8788f03b8bb23cb2bfd2b319eeac86141d37c4a85a3c9dd6289ffe2da50b1caf', transactionIndex: 0, blockHash: '0x1c9ce0fb910075a1fd2b6bc43342454d620d20ca08f3e66b677892910f1def0c', blockNumber: 7, from: '0xec926020a1962832d31d00a5e80de98567c65155', …}
+index.js:540 null Result {0: false, 1: '2'}
+index.js:540 null '1'
+index.js:540 null '1'
+App.js:122 {transactionHash: '0x393fcd25f5ccebad386764edd5506ae7e63cd1d658d81d7cc0c63c211d5e7a14', transactionIndex: 0, blockHash: '0xc80429da895cba8046aaba0792f730a8e0eab684c7ea8338fabb738a7fc3748e', blockNumber: 8, from: '0xec926020a1962832d31d00a5e80de98567c65155', …}
+index.js:540 null Result {0: false, 1: '7'}
+index.js:540 null '1'
+index.js:540 null '1'
+index.js:540 null '1'
+index.js:540 null '3'
+
+
+
+1 win
+3 losses 
+
+
+4 calls
+
+everything looks ok.
+
+
+
